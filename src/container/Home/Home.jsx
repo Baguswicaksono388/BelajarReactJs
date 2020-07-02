@@ -4,6 +4,19 @@ import React, { Component } from 'react';
 import LifeCycleComp from '../LifeCycleComp/LifeCycleComp';
 
 class Home extends Component {
+    state = {
+        showComponent: true
+    }
+
+    componentDidMount() {
+        //baris didalm function ini digunakan untuk menghilangkan component selama 5 detik
+        setTimeout(() => {
+            this.setState({
+                showComponent: false
+            })
+        }, 5000)
+    }
+
     render() {
         return (
             <div>
@@ -33,9 +46,15 @@ class Home extends Component {
                 {/* <p>Counter</p>
                 <hr></hr>
                 <Product></Product> */}
+
                 <p>Lifeycle Component</p>
                 <hr></hr>
-                <LifeCycleComp></LifeCycleComp>
+                {
+                    this.state.showComponent
+                        ?
+                        <LifeCycleComp />
+                        : null
+                }
             </div>
         )
     }
